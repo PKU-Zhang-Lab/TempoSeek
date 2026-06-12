@@ -18,7 +18,7 @@ TempoSeek is a deep-learning-based bioinformatics tool that predicts translation
 
 ```
 TempoSeek-Release-Clean/
-├── ckpts/                          # Pretrained model weights
+├── ckpts/                          # Pretrained model weights (download from Zenodo)
 │   ├── TempoNet.ckpt
 │   └── TempoCoder.ckpt
 ├── figs/                           # Diagrams and figures
@@ -31,31 +31,31 @@ TempoSeek-Release-Clean/
 │   ├── build_dataset.ipynb         # Dataset construction
 │   ├── process_data.ipynb          # Data preprocessing
 │   └── tempo_statistic.ipynb       # Tempo statistical analysis
-├── srcs/                           # Core source code
-│   ├── train.py                    # Training entry point (Hydra config)
-│   ├── config/                     # Hydra configuration files
-│   │   ├── config.yaml             # Master configuration
-│   │   ├── data/                   # Data configuration
-│   │   ├── model/                  # Model hyperparameters
-│   │   ├── experiment/             # Experiment configs (10-fold CV)
-│   │   └── trainer/                # Trainer configuration
-│   ├── model/                      # Model implementations
-│   │   ├── TempoNet/               # TempoNet model
-│   │   │   ├── model.py            # Graphormer network definition
-│   │   │   └── dataloader.py       # Training data loader
-│   │   └── TempoCoder/             # TempoCoder model
-│   │       ├── model.py            # Transformer network definition
-│   │       └── dataloader.py       # Training data loader
-│   ├── predict/                    # Inference pipeline
-│   │   ├── dataset.py              # Inference datasets & DataLoaders
-│   │   ├── TempoNet.py             # PDB/CIF → tempo CSV
-│   │   ├── TempoCoder.py           # tempo CSV → codon CSV
-│   │   ├── TempoSeek.py            # One-click full pipeline
-│   │   └── utils.py                # Logger and utilities
-│   └── utils/                      # Shared utilities
-│       ├── dataset.py              # TRMPDataset (cluster data structure)
-│       ├── schedulers.py           # Noam LR Scheduler
-│       └── utils.py                # Vocab, tempo calculation, k-value
+└── srcs/                           # Core source code
+    ├── train.py                    # Training entry point (Hydra config)
+    ├── config/                     # Hydra configuration files
+    │   ├── config.yaml             # Master configuration
+    │   ├── data/                   # Data configuration
+    │   ├── model/                  # Model hyperparameters
+    │   ├── experiment/             # Experiment configs (10-fold CV)
+    │   └── trainer/                # Trainer configuration
+    ├── model/                      # Model implementations
+    │   ├── TempoNet/               # TempoNet model
+    │   │   ├── model.py            # Graphormer network definition
+    │   │   └── dataloader.py       # Training data loader
+    │   └── TempoCoder/             # TempoCoder model
+    │       ├── model.py            # Transformer network definition
+    │       └── dataloader.py       # Training data loader
+    ├── predict/                    # Inference pipeline
+    │   ├── dataset.py              # Inference datasets & DataLoaders
+    │   ├── TempoNet.py             # PDB/CIF → tempo CSV
+    │   ├── TempoCoder.py           # tempo CSV → codon CSV
+    │   ├── TempoSeek.py            # One-click full pipeline
+    │   └── utils.py                # Logger and utilities
+    └── utils/                      # Shared utilities
+        ├── dataset.py              # TRMPDataset (cluster data structure)
+        ├── schedulers.py           # Noam LR Scheduler
+        └── utils.py                # Vocab, tempo calculation, k-value
 ```
 
 ---
@@ -78,7 +78,7 @@ TempoSeek-Release-Clean/
 
 ```bash
 # Clone the repository
-git clone <repo_url>
+git clone https://github.com/PKU-Zhang-Lab/TempoSeek.git
 cd TempoSeek-Release-Clean
 
 # Recommended: create a conda environment
@@ -90,21 +90,33 @@ pip install torch torchvision --index-url https://download.pytorch.org/whl/cu132
 pip install pytorch-lightning hydra-core biopython numpy pandas tqdm matplotlib omegaconf tensorboard ipykernel
 ```
 
-> **Data download**: Training data can be obtained in two ways:
->
-> 1. **Zenodo** (recommended): Download `preprocessed_data.tar.gz`, place it in the project root, and extract:
->    ```bash
->    tar -xvf preprocessed_data.tar.gz
->    ```
->    This will create the `data/` directory containing `NCBI_pkl/`, `AFDB_pkl/`, and `fold_list.pkl`.
->
-> 2. **Build from scratch**: Run the notebooks in `notebooks/` to download and process raw data yourself:
->    ```bash
->    pip install requests        # Required for data download
->    # then open and run:
->    #   notebooks/process_data.ipynb
->    #   notebooks/build_dataset.ipynb
->    ```
+### Download
+
+**For inference** — only pretrained checkpoints are needed:
+
+Pretrained model weights are available on Zenodo. Download and place them in the `ckpts/` directory:
+
+| File | Description |
+|------|-------------|
+| `ckpts/TempoNet.ckpt` | Protein structure → translation tempo |
+| `ckpts/TempoCoder.ckpt` | Amino acid + tempo → codon |
+
+**For training** — training data is also required:
+
+1. **Zenodo** (recommended): Download `preprocessed_data.tar.gz`, place it in the project root, and extract:
+   ```bash
+   tar -xvf preprocessed_data.tar.gz
+   ```
+   This will create the `data/` directory containing `NCBI_pkl/`, `AFDB_pkl/`, and `fold_list.pkl`.
+
+2. **Build from scratch**: Run the notebooks in `notebooks/` to download and process raw data yourself:
+   ```bash
+   pip install requests        # Required for data download
+   # then open and run:
+   #   notebooks/process_data.ipynb
+   #   notebooks/build_dataset.ipynb
+   ```
+
 
 ---
 
@@ -224,23 +236,6 @@ ATGGCTGCT...
 
 ---
 
-## Pretrained Models
-
-The `ckpts/` directory contains pretrained weights:
-
-| Model | File | Description |
-|-------|------|-------------|
-| TempoNet | `TempoNet.ckpt` | Protein structure → translation tempo |
-| TempoCoder | `TempoCoder.ckpt` | Amino acid + tempo → codon |
-
----
-
 ## Citation
 
 If you use TempoSeek in your research, please cite the relevant paper (TBD).
-
----
-
-## License
-
-(TBD)
