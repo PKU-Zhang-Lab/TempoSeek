@@ -1,0 +1,11 @@
+defaults:
+  - model: TempoNet       # Default model
+  - data: TempoNet        # Data configuration
+  - trainer: default         # Default trainer
+  - _self_
+  - experiment: null         # Optional: override with specific experiment
+
+# Global configuration
+seed: 42
+device: cuda:0
+log_dir: experiments         # Base directory for logs

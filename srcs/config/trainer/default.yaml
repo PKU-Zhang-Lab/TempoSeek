@@ -1,0 +1,13 @@
+# PyTorch Lightning Trainer Configuration
+
+max_epochs: 500
+accelerator: gpu
+devices: [0]
+precision: 32
+log_every_n_steps: 10
+gradient_clip_val: 0.5
+accumulate_grad_batches: 4
+check_val_every_n_epoch: 1
+
+# Checkpoint resuming (set ckpt_path to a checkpoint file to resume training)
+ckpt_path: null  # e.g., "outputs/2024-01-15/12-34-56/ckpt/TempoNet-best.ckpt"

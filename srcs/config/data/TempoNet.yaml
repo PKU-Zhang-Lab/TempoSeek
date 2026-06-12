@@ -1,0 +1,10 @@
+# Data Configuration (shared across models)
+fold_list_pkl_path: data/fold_list.pkl
+ncbi_dir: data/NCBI_pkl
+afdb_dir: data/AFDB_pkl
+batch_size: 5000           # Token limit per batch
+
+train:
+  folds: [0, 1, 2, 3, 4, 5, 6, 7, 8]
+valid:
+  folds: [9]

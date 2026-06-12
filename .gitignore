@@ -1,0 +1,17 @@
+/data/
+/outputs/
+/pretrained/
+/multirun/
+/tmp/
+/assay/
+/.vscode/
+/bash/
+*/__pycache__/
+*.pyc
+*.pth
+*.out
+*.log
+*.sh
+/_pred/
+preprocessed_data.tar.gz
+/ckpts/

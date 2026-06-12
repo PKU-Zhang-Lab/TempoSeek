@@ -1,0 +1,11 @@
+# TempoCoder Model Configuration - Model Parameters Only
+
+dir: TempoCoder
+type: TempoCoder
+src_vocab: 22              # Amino acid vocabulary (20 + unknown + padding)
+tgt_vocab: 66              # Codon vocabulary (64 codons + unknown + padding)
+d_hidden: 512              # Hidden dimension
+d_ff: null                 # Feed-forward dimension (default: 4 * d_hidden)
+n_heads: 4                 # Number of attention heads
+n_layers: 3                # Number of transformer layers
+dropout: 0.1               # Dropout rate

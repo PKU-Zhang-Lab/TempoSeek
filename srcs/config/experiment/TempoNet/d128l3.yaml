@@ -1,0 +1,13 @@
+# @package _global_
+
+defaults:
+  - override /model: TempoNet
+  - override /data: TempoNet
+  - override /trainer: default
+
+experiment_name: temponet_d128l3
+
+model:
+  d_hidden: 128
+  n_layers: 3
+

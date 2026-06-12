@@ -1,0 +1,13 @@
+# TempoNet Model Configuration - Model Parameters Only
+
+dir: TempoNet
+type: TempoNet
+src_vocab: 22              # Amino acid vocabulary (20 + unknown + padding)
+tgt_dim: 1                # Translation tempo prediction dimension
+d_hidden: 512              # Hidden dimension
+d_ff: null                 # Feed-forward dimension (default: 4 * d_hidden)
+n_heads: 4               # Number of attention heads for Graphormer
+n_layers: 3              # Number of Graphormer layers
+dropout: 0.1               # Dropout rate
+k_neighbors: 48            # Number of k-nearest neighbors
+coord_noise: 0.2           # Coordinate noise for augmentation

@@ -1,0 +1,13 @@
+# @package _global_
+
+defaults:
+  - override /model: TempoCoder
+  - override /data: TempoCoder
+  - override /trainer: default
+
+experiment_name: tempocoder_d128l6
+
+model:
+  d_hidden: 128
+  n_layers: 6
+
